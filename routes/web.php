@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('test-event' , function (){
+   broadcast(new \App\Events\SayHello());
+})->name('test-event');
+
+Route::get('my-messages' , function (){
+    return view('my-messages');
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
